@@ -165,21 +165,30 @@ const TextLayoutStyle = Extension.create({
   },
 });
 
-/* ---------- Block style extension: lets paragraphs/headings/blockquote/listItem
-   carry an arbitrary inline `style` attribute so we can paint a section
-   background across every line in a multi-line selection. ---------- */
-const BlockStyle = Extension.create({
-  name: "blockStyle",
+/* ---------- Global Attributes Extension ---------- */
+const GlobalAttributes = Extension.create({
+  name: "globalAttributes",
   addGlobalAttributes() {
     return [
       {
-        types: ["paragraph", "heading", "blockquote", "listItem"],
+        // Apply to all standard elements plus our new generic ones
+        types: ["paragraph", "heading", "blockquote", "listItem", "textStyle", "div", "span", "image", "videoEmbed"],
         attributes: {
           style: {
             default: null,
             parseHTML: (el) => (el as HTMLElement).getAttribute("style") || null,
             renderHTML: (attrs) => (attrs.style ? { style: attrs.style } : {}),
           },
+          class: {
+            default: null,
+            parseHTML: (el) => (el as HTMLElement).getAttribute("class") || null,
+            renderHTML: (attrs) => (attrs.class ? { class: attrs.class } : {}),
+          },
+          id: {
+            default: null,
+            parseHTML: (el) => (el as HTMLElement).getAttribute("id") || null,
+            renderHTML: (attrs) => (attrs.id ? { id: attrs.id } : {}),
+          }
         },
       },
     ];
