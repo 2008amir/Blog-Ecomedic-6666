@@ -46,6 +46,8 @@ import {
   RotateCw,
   Trash2,
   Square,
+  Minus,  // <-- Add this
+  Plus,   // <-- Add this
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
