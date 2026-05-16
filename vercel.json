@@ -1,11 +1,10 @@
+
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+  "framework": null,
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/_shell.html" }
   ]
 }
-
